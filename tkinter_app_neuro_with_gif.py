@@ -10,7 +10,7 @@ def create_page(root, question_label, measurements, navigate_to_page, next_page_
 
     # Image setup
     img = Image.open(image_path)
-    img = img.resize((270,225), Image.ANTIALIAS)
+    img = img.resize((290,245), Image.LANCZOS)
     photo = ImageTk.PhotoImage(img)
     
     img_label = ttk.Label(root, image=photo)
@@ -24,7 +24,7 @@ def create_page(root, question_label, measurements, navigate_to_page, next_page_
     frame = ttk.Frame(root, padding=20)
     frame.pack(fill='both', expand=True)
 
-    ttk.Label(frame, text=f"If the measurement for {question_label}: {question} cm\nProvide the following measurements:", font=('Helvetica', 12)).pack(pady=10)
+    ttk.Label(frame, text=f"If the measurement for {question_label} is: {question}cm\nProvide the following percentages:", font=('Helvetica', 12)).pack(pady=10)
 
     entry_widgets = {}
     for label_text in answers.keys():
@@ -61,15 +61,24 @@ def create_start_page(root, navigate_to_page):
     for widget in root.winfo_children():
         widget.destroy()
 
+    start_img = Image.open(r'assets\images\animated.gif')
+    start_img = start_img.resize((290,245), Image.LANCZOS)
+    start_photo = ImageTk.PhotoImage(start_img)
+    
+    img_label = ttk.Label(root, image=start_photo)
+    img_label.image = start_photo  # keep a reference!
+    img_label.pack(pady=5)
+    
     frame = ttk.Frame(root, padding=20)
     frame.pack(fill='both', expand=True)
 
-    ttk.Label(frame, text="Welcome to Neuro Measurement Practice App", font=('Helvetica', 16)).pack(pady=10)
-    ttk.Label(frame, text="A measurement will be provided, \nGive the percentage to the nearest tenth", font=('Helvetica', 12)).pack(pady=10)
+    ttk.Label(frame, text="Neuro Measurement Practice App", font=('Helvetica', 16)).pack(pady=10)
+    ttk.Label(frame, text="A randomized measurement will be provided,\nFill in answers and click Check Answers button", font=('Helvetica', 12)).pack(pady=10)
     ttk.Button(frame, text="Start Quiz", command=lambda: navigate_to_page(1), bootstyle='success').pack(pady=20)
 def main():
-    app = ttkb.Window(themename="flatly")
+    app = ttkb.Window(themename="pulse")
     app.title("Neuro Measurement Practice App")
+    app.geometry('400x950')
 
     def navigate_to_page(page_number):
         page_settings = {
@@ -80,7 +89,7 @@ def main():
                     "Nasion to Pz (70%)": 70,
                     "Nasion to Oz (90%)": 90
                 }, (20, 40), 2,'assets/images/page1.png'),
-            2: ("L pre-auricular to R pre-auricular", {
+            2: ("L pre-auricular to R pre-aricular", {
                     "L pre to T3 (10%)": 10,
                     "L pre to C3 (30%)": 30,
                     "L pre to C2 (50%)": 50,
