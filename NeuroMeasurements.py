@@ -6,16 +6,6 @@ from PIL import Image, ImageTk
 import os
 import sys
 
-def resource_path(relative_path):
-    """ Get the absolute path to the resource, works for development and for PyInstaller """
-    try:
-        # PyInstaller creates a temporary folder and stores path in _MEIPASS
-        base_path = sys._MEIPASS
-    except AttributeError:
-        base_path = os.path.abspath(".")
-    
-    return os.path.join(base_path, relative_path)
-
 def create_page(root, question_label, measurements, navigate_to_page, next_page_num, measurement_range, image_path):
     for widget in root.winfo_children():
         widget.destroy()
@@ -72,15 +62,7 @@ def create_start_page(root, navigate_to_page):
     # Clear previous content
     for widget in root.winfo_children():
         widget.destroy()
-    start_image_path = resource_path(r'assets\images\animated.gif')
-    start_img = Image.open(start_image_path)
-    start_img = start_img.resize((290,245), Image.LANCZOS)
-    start_photo = ImageTk.PhotoImage(start_img)
-    
-    img_label = ttk.Label(root, image=start_photo)
-    img_label.image = start_photo  # keep a reference!
-    img_label.pack(pady=5)
-    
+
     frame = ttk.Frame(root, padding=20)
     frame.pack(fill='both', expand=True)
 
