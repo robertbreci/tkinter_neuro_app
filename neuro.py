@@ -82,6 +82,8 @@ def main():
     app = ttkb.Window(themename="cosmo")
     app.title("10-20 Measurement Practice")
     app.geometry('500x950+50+25')  # Adjust size as necessary
+        
+    app.iconbitmap('neuro.ico')
 
     def navigate_to_page(page_number):
         # Configuration dictionary, same as you have defined
