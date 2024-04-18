@@ -83,7 +83,7 @@ def main():
     app.title("10-20 Measurement Practice")
     app.geometry('500x950+50+25')  # Adjust size as necessary
         
-    app.iconbitmap('neuro.ico')
+    app.iconbitmap(r'C:\Users\Rob\Desktop\tkinter_neuro_app\neuro.ico')
 
     def navigate_to_page(page_number):
         # Configuration dictionary, same as you have defined
